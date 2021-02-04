@@ -6,7 +6,7 @@ import tkinter as tk
 
 # todo so far everything looks good now time to implement this into my
 #  main terminal :)
-
+#  Update to see where this goes
 
 def username(txt_username):
     if txt_username == "1":
