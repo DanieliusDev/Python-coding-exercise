@@ -1,0 +1,2 @@
+I sita pozicija neprieme :/
+Careful with appending, if you run app again, it will add everything one more time :(
