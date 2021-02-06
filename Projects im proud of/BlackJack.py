@@ -23,6 +23,14 @@ card_dict = {
 #  annotate/comment functions
 #  make so that dictionary would represent actual deck and if on of the
 #  cards was drawn if would have less chance of getting same again
+#  put more code in functions if possible
+#  fix value of king queen and jack which should be 10 and ace 1 or 11
+
+# GAME RULES:
+# All cards are at face value, except for the King, Queen and Jack which
+# count as 10. An Ace will have a value of 11 unless that would give a
+# player or the dealer a score in excess of 21; in which case, it has
+# a value of 1. The dealer starts the game. Every player gets 2 cards, face up.
 
 
 def user_card_game():

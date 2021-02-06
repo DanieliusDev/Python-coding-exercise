@@ -9,7 +9,7 @@ list_of_words = ['work', 'holiday', 'dinner', 'vacation']
 #  make 6 lives, - DONE
 #  print how much letters in word, - DONE
 #  print correct letters in word instead of underscores, - DONE
-#  next part would be to make an app and put hangman in it ;)
+#  next part would be to make an GUI and put hangman in it ;)
 BEGIN = 0
 END = len(list_of_words) - 1
 AMOUNT_OF_MOVES = 7
@@ -66,7 +66,7 @@ def guessing_game():
         if '_' not in underlines:
             webbrowser.open('https://www.youtube.com/watch?v=ZyhrYis509A')
             print('Did you like your prize?')
-            input('Hit any button to exit, maže :*')
+            input('Hit any button to exit')
             break
         # below if and elif statements are for printing the hangman
         # and if it was correct letter/guess or not
