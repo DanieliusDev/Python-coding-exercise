@@ -305,7 +305,7 @@ if login_GUI.login():
 
 
     def clear_button():
-        result_label.destroy()
+        result_label.pack_forget()
 
 
     btn_accept = tk.Button(time_frame, text='Accept', command=result, padx=20, pady=5)
