@@ -6,11 +6,7 @@ import pytz
 import datetime
 import login_GUI
 
-# from tkinter import messagebox
-
-# Main frame/window
-# THIS DOES NOT WORK IF STATEMENT BROKEN ? ? ?
-if login_GUI.ok_button(login_GUI.ent_username.get(), login_GUI.ent_password.get()):
+if login_GUI.login():
     icon = "C:/Users/37060/Downloads/Letter_D_red_35026.ico"
 
     root = tk.Tk()
@@ -24,9 +20,6 @@ if login_GUI.ok_button(login_GUI.ent_username.get(), login_GUI.ent_password.get(
     root.columnconfigure(0, weight=1)
     root.columnconfigure(1, weight=1)
     root.columnconfigure(2, weight=1)
-
-
-    # TODO how to get to add, subtract and equal ?
 
 
     def calculator_window():
@@ -263,11 +256,7 @@ if login_GUI.ok_button(login_GUI.ent_username.get(), login_GUI.ent_password.get(
         path.close()
 
 
-    # time_canvas = tk.Canvas(root, relief='raised', borderwidth=2, width=250, height=150)
-    # time_canvas.grid(row=5, column=1, columnspan=1)
-
     time_frame = tk.Frame(root, relief='raised', borderwidth=2, width=200, height=200)
-    # time_frame.propagate(0)
     time_frame.grid(row=5, column=0, sticky='sew')
 
     time_result_frame = tk.Frame(root, relief='sunken')
@@ -306,7 +295,6 @@ if login_GUI.ok_button(login_GUI.ent_username.get(), login_GUI.ent_password.get(
                 return "No such zone found"
 
 
-    # result_label = tk.Label(time_frame, text=world_times())
     result_label = tk.Label(time_result_lf, text=world_times())
 
 
