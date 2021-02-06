@@ -18,9 +18,11 @@ card_dict = {
 }
 
 
-# TODO get correctly if statements on last function of blackjack game
+# TODO get correctly if statements on last function of blackjack game - DONE
 #  write down/comment code
 #  annotate/comment functions
+#  make so that dictionary would represent actual deck and if on of the
+#  cards was drawn if would have less chance of getting same again
 
 
 def user_card_game():
@@ -39,14 +41,18 @@ def user_card_game():
         random_card = card_dict.get(random_key)
         print('*' * 100)
         print()
+        # below if score of user is more than 21 player lost.
         if score > blackjack:
             print("Last card was {}".format(random_card))
             print("Total score was {}".format(score))
-            print("Better luck next time!")
+            # print("Better luck next time!")
             return score
+        # in case score equal to 21 user is notified of getting 21
         elif score == blackjack:
             print("BlackJACK!")
             return score
+        # once user gets a card he must decide to continue and draw
+        # another card from deck or to stop and see what has PC drawn in his hand
         user_input = input("You got {}, total is now {} would you like "
                            "another one? (Y/N): ".format(random_card, score))
         if user_input == "y":
@@ -55,10 +61,13 @@ def user_card_game():
             return score
 
 
-# user_card_game()
-
-
 def pc_card_game():
+    """
+    Computer playing 21 and trying to get the score not above 21
+    and not too low
+
+    :return: score most appropriate for win
+    """
     score = 0
     start_point = 0
     blackjack = 21
@@ -68,8 +77,7 @@ def pc_card_game():
         score += random_key
         random_card = card_dict.get(random_key)
         hand_list.append(random_card)
-
-        if blackjack >= score > + 19:
+        if blackjack >= score > 19:
             print("PC has got {}".format(score))
             print("PC hand contains {}".format(hand_list))
             print()
@@ -80,21 +88,27 @@ def pc_card_game():
             return score
 
 
-# pc_card_game()
+while True:
+    def blackjackgame(player, pc):
+        blackjack = 21
+        print(player)
+        print(pc)
+        if player > blackjack:
+            print('Player over scored with points, therefore PC WON')
+        elif player > pc and (player <= blackjack) or pc > blackjack > player:
+            print('*' * 50)
+            print("Player won!!!")
+            print('*' * 50)
+        elif player == pc and not (pc and player > blackjack):
+            print('^' * 50)
+            print("ITS A TIE :3")
+            print('^' * 50)
+        elif player < pc and not (pc > blackjack) or player > blackjack or player < pc:
+            print('-' * 50)
+            print("PC WON")
+            print('-' * 50)
+    user_input = input('Continue ? if yes hit any button, if no click 0')
+    if user_input == '0':
+        break
 
-def blackjackgame(player, pc):
-    blackjack = 21
-
-    if player > blackjack:
-        print('Player over scored with points')
-    elif player > pc and (player <= blackjack) or player < pc and player <= blackjack:
-        print("player won!!!")
-    elif player == pc and not (pc and player > blackjack):
-        print("ITS A TIE :3")
-    elif player < pc and not (pc > blackjack):
-        print("PC WON")
-    elif player > blackjack or player < pc and pc >= blackjack:
-        print('player lost')
-
-
-blackjackgame(user_card_game(), pc_card_game())
+    blackjackgame(user_card_game(), pc_card_game())
