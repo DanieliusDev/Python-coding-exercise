@@ -87,13 +87,13 @@ def blackjackgame(player, pc):
 
     if player > blackjack:
         print('Player over scored with points')
-    elif player > pc and (player <= blackjack):
+    elif player > pc and (player <= blackjack) or player < pc and player <= blackjack:
         print("player won!!!")
     elif player == pc and not (pc and player > blackjack):
         print("ITS A TIE :3")
     elif player < pc and not (pc > blackjack):
         print("PC WON")
-    elif player > blackjack or player < pc and pc >= blackjack :
+    elif player > blackjack or player < pc and pc >= blackjack:
         print('player lost')
 
 
