@@ -7,11 +7,11 @@ pygame.init()
 
 # TODO here begins my super awesome SNAKE game :)
 #  snake must move continuously, ---DONE
-#  snake moves both ways, make only one
+#  snake moves both ways, make only one, ---DONE
 #  making code OOP would be nice practice
 #  must make snake to move the moment game is launched or space/enter key hit to start game
-#  initialize food once on map
-#  once food is being eaten or impact made create food in new place
+#  initialize food once on map, ---DONE
+#  once food is being eaten or impact made create food in new place, ---DONE
 #  once food eaten extend snakes body
 #  keep track of score on how many foods eaten
 #  add difficulty levels
@@ -63,35 +63,59 @@ location = random.randint(0, 500), random.randint(0, 500)
 black = (0, 0, 0)
 radius = 15.0
 blue = (0, 0, 255)
+fps = 60
 
 
 def main():
     global x, y, x_changed, y_changed, location
-
+    counter = 0
     running = True
     clock = pygame.time.Clock()
+    direction = ''
+    going_to = ''
     while running:
-        # for smoother game
-        clock.tick(60)
+        # for smoother game limit frames per second
+        clock.tick(fps)
         # loop through all evens within pygame
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 # if you click X or alt f4 game will close
                 running = False
             if event.type == pygame.KEYDOWN:
-                # initializing keys for pressing
+                # initializing keys for pressing in which direction snake should move
+                # assigning movement to specific keys
                 if event.key == pygame.K_LEFT:
-                    x_changed = -velocity
-                    y_changed = 0
+                    going_to = "left"
                 elif event.key == pygame.K_RIGHT:
-                    x_changed = velocity
-                    y_changed = 0
+                    going_to = 'right'
                 elif event.key == pygame.K_UP:
-                    y_changed = -velocity
-                    x_changed = 0
+                    going_to = 'up'
                 elif event.key == pygame.K_DOWN:
-                    y_changed = velocity
-                    x_changed = 0
+                    going_to = 'down'
+
+        # c
+        if going_to == 'left' and direction != 'right':
+            direction = 'left'
+        if going_to == 'right' and direction != 'left':
+            direction = 'right'
+        if going_to == 'up' and direction != 'down':
+            direction = 'up'
+        if going_to == 'down' and direction != 'up':
+            direction = 'down'
+
+        if direction == 'left':
+            x_changed = -velocity
+            y_changed = 0
+        if direction == 'right':
+            x_changed = velocity
+            y_changed = 0
+        if direction == 'up':
+            y_changed = -velocity
+            x_changed = 0
+        if direction == 'down':
+            y_changed = velocity
+            x_changed = 0
+
         # boundaries designed so that if you touch them, game ends at the moment
         if x >= GAME_WINDOW_WIDTH - snake_width or x <= 0 or y >= GAME_WINDOW_HEIGHT - snake_height or y <= 0:
             running = False
@@ -100,15 +124,20 @@ def main():
         y += y_changed
         # background added
         WIN.blit(GRASS, (0, 0))
-        # todo FOOD MUST APPEAR in one spot until it is eaten and then appear in new place
         food = pygame.draw.circle(WIN, black, location, radius)
         # snakes head which will extend to body later
         head = pygame.draw.rect(WIN, blue, (x, y, snake_width, snake_height))
         # constantly updates screen
         pygame.display.update()
-        # checks if snakes head has collided with food, if yes should create new food
+        # checks if snakes head has collided with food, if yes should create new food and extent snake
         if food.colliderect(head):
-            print("yum, test passed")
+            # keeping score of points
+            counter += 1
+            print(f"Score is {counter}")
+            # providing new location for circle/food
+            location = random.randint(0, 500), random.randint(0, 500)
+            # drawing/initializing new food on screen
+            pygame.draw.circle(WIN, black, location, radius)
     pygame.quit()
 
 
